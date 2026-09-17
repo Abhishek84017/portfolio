@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — "Paper & Ink". Warm cream paper, near-black ink,
+   hairline borders and soft frosted glass. Light is the default; warm
+   black is opt-in via [data-theme="dark"] on <html> (set before paint).
+------------------------------------------------------------------- */
+:root {
+  --bg-primary: #f7f5f0;
+  --bg-secondary: #efece5;
+  --bg-elevated: #fdfcf9;
+  --accent-primary: #141413;
+  --accent-secondary: #a08560;
+  --text-primary: #141413;
+  --text-secondary: #66625b;
+  --border: #e4e0d7;
+  --success: #4c9a64;
+
+  /* Text-safe accent variants (AA on their backgrounds) */
+  --accent-ink: #141413;
+  --accent-secondary-ink: #7a5c32;
+  --success-ink: #2f6b43;
+  --danger-ink: #b4453a;
+
+  --border-strong: #cfc9bd;
+  --shadow-color: 36 20% 35%;
+
+  /* Ink gradient (buttons, hairlines) + shimmer highlight */
+  --gradient-from: #141413;
+  --gradient-to: #3d3a35;
+  --shimmer-highlight: #b59a70;
+  --on-accent: #f7f5f0;
+
+  /* Glass */
+  --glass-bg: rgb(255 255 255 / 0.55);
+  --glass-bg-strong: rgb(253 252 249 / 0.82);
+  --glass-border: rgb(20 20 19 / 0.08);
+  --glass-edge: rgb(255 255 255 / 0.9);
+  --spot: rgb(160 133 96 / 0.07);
+  --spot-border: rgb(20 20 19 / 0.28);
+  --ambient-1: rgb(222 204 172 / 0.45);
+  --ambient-2: rgb(255 255 255 / 0.9);
+  --grain-opacity: 0.035;
+  --selection: rgb(214 196 166 / 0.6);
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #0c0b0a;
+  --bg-secondary: #141311;
+  --bg-elevated: #1b1916;
+  --accent-primary: #f2ebdf;
+  --accent-secondary: #c8a878;
+  --text-primary: #f2ebdf;
+  --text-secondary: #a39b8f;
+  --border: #282520;
+  --success: #9bd4a0;
+
+  --accent-ink: #f2ebdf;
+  --accent-secondary-ink: #d6b98b;
+  --success-ink: #9bd4a0;
+  --danger-ink: #e8a598;
+
+  --border-strong: #3a352e;
+  --shadow-color: 30 30% 2%;
+
+  --gradient-from: #f2ebdf;
+  --gradient-to: #cdb58d;
+  --shimmer-highlight: #fffaf0;
+  --on-accent: #0c0b0a;
+
+  --glass-bg: rgb(27 25 22 / 0.45);
+  --glass-bg-strong: rgb(20 19 17 / 0.78);
+  --glass-border: rgb(242 235 223 / 0.08);
+  --glass-edge: rgb(255 250 240 / 0.06);
+  --spot: rgb(242 235 223 / 0.06);
+  --spot-border: rgb(242 235 223 / 0.4);
+  --ambient-1: rgb(200 168 120 / 0.14);
+  --ambient-2: rgb(242 235 223 / 0.05);
+  --grain-opacity: 0.05;
+  --selection: rgb(200 168 120 / 0.35);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg-primary);
+  --color-surface: var(--bg-secondary);
+  --color-elevated: var(--bg-elevated);
+  --color-accent: var(--accent-primary);
+  --color-accent-2: var(--accent-secondary);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-2-ink: var(--accent-secondary-ink);
+  --color-fg: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-success: var(--success);
+  --color-success-ink: var(--success-ink);
+  --color-danger-ink: var(--danger-ink);
+
+  --font-display: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.015em;
+  --tracking-eyebrow: 0.16em;
+}
+
+/* ------------------------------------------------------------------
+   Fluid type scale — §3 typography. clamp() so headings scale
+   smoothly instead of snapping at breakpoints.
+------------------------------------------------------------------- */
+@utility text-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.35rem + 3.9vw, 4.5rem); /* 36 → 72 */
+  line-height: 1.04;
+  letter-spacing: var(--tracking-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+}
+
+@utility text-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 1.4rem + 2vw, 3rem); /* 30 → 48 */
+  line-height: 1.1;
+  letter-spacing: var(--tracking-heading);
+  font-weight: 600;
+  font-optical-sizing: auto;
+}
+
+@utility text-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem); /* 20 → 24 */
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+@utility text-lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem); /* 17 → 20 */
+  line-height: 1.6;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-accent {
+  background-image: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+}
+
+/* Frosted glass surface — the base treatment for every card */
+@utility glass {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-edge),
+    0 1px 2px hsl(var(--shadow-color) / 0.12),
+    0 12px 32px -16px hsl(var(--shadow-color) / 0.35);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+@utility glass-strong {
+  background-color: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 0 var(--glass-edge);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(150%);
+}
+
+@utility shadow-card {
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / 0.12),
+    0 8px 24px -12px hsl(var(--shadow-color) / 0.24);
+}
+
+@utility shadow-card-hover {
+  box-shadow:
+    0 2px 4px hsl(var(--shadow-color) / 0.16),
+    0 24px 48px -16px hsl(var(--shadow-color) / 0.4),
+    inset 0 1px 0 0 var(--glass-edge);
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 300ms var(--ease-out-expo), color 300ms var(--ease-out-expo);
+}
+
+/* Lock page scroll while a modal <dialog> is open */
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--text-primary);
+}
+
+/* Brand focus ring — visible, keyboard-only */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+.focus-ring-inset:focus-visible {
+  outline-offset: -2px;
+}
+
+/* ------------------------------------------------------------------
+   Hero load choreography — CSS (not JS) so the LCP headline paints
+   immediately without waiting for hydration.
+------------------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3rem, 0) rotate(2deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.08);
+  }
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@utility animate-rise {
+  animation: rise 900ms var(--ease-out-expo) both;
+}
+
+@utility animate-float-in {
+  animation: float-in 1200ms var(--ease-out-expo) both;
+}
+
+/* Gradient text with a single light sweep on load */
+@utility text-shimmer {
+  background-image: linear-gradient(
+    110deg,
+    var(--gradient-from) 0%,
+    var(--gradient-to) 35%,
+    var(--shimmer-highlight) 50%,
+    var(--gradient-to) 65%,
+    var(--gradient-from) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 1800ms var(--ease-out-expo) 500ms both;
+}
+
+@utility animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
+@utility skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--bg-elevated) 0%,
+    var(--border) 50%,
+    var(--bg-elevated) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.4s linear infinite;
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.45em, 0) rotate(2deg);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -0.75rem, 0);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(8vw, 6vh, 0) scale(1.15);
+  }
+  66% {
+    transform: translate3d(-6vw, 10vh, 0) scale(0.9);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@utility animate-word {
+  display: inline-block;
+  animation: word-in 900ms var(--ease-out-expo) both;
+}
+
+@utility animate-bob {
+  animation: bob 7s ease-in-out infinite;
+}
+
+@utility animate-orbit {
+  animation: orbit 32s ease-in-out infinite;
+}
+
+/* Ambient page backdrop: slow warm light + film grain, so glass has
+   something to frost. Fixed, behind everything, pointer-transparent. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ambient::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Cursor-tracked spotlight on glass cards (--mx/--my set by Providers) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before,
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out-expo);
+}
+.spotlight::before {
+  z-index: -1;
+  background: radial-gradient(28rem circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 45%);
+}
+.spotlight::after {
+  z-index: 2;
+  padding: 1px;
+  background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 50%), var(--spot-border), transparent 45%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+/* §6 — every animation has a reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
