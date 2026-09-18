@@ -1,10 +1,9 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight, X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { GooglePlayIcon } from "@/components/ui/brand-icons";
-import { buttonClasses } from "@/components/ui/button";
+import { StoreLinks } from "@/components/ui/store-links";
 import type { Project } from "@/data/projects";
 import { ProjectVisual } from "./project-visual";
 
@@ -140,23 +139,7 @@ export function CaseStudyDialog({
                 </li>
               ))}
             </ul>
-            {project.playStoreUrl ? (
-              <a
-                href={project.playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonClasses({ variant: "secondary", size: "sm", className: "shrink-0" })}
-              >
-                <GooglePlayIcon size={14} />
-                Play Store
-                <ArrowUpRight
-                  size={14}
-                  aria-hidden
-                  className="transition-transform duration-200 ease-out-expo group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-            ) : null}
+            <StoreLinks project={project} variant="buttons" className="shrink-0" />
           </div>
         </div>
       </div>

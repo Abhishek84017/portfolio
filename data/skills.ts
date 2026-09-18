@@ -72,6 +72,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       "Django",
       "Django REST Framework",
+      "Supabase (Postgres, Auth, Edge Functions)",
       "JWT / OAuth2",
       "Webhook Integrations",
       "PostgreSQL",
@@ -87,6 +88,7 @@ export const skillGroups: SkillGroup[] = [
       "Firestore",
       "FCM",
       "Crashlytics",
+      "Sentry",
       "Remote Config",
       "Cloud Functions",
       "AWS (Boto3, S3)",
@@ -105,6 +107,7 @@ export const skillGroups: SkillGroup[] = [
       "Google Play Billing (IAP)",
       "App Store In-App Purchases",
       "Razorpay",
+      "Stripe (PaymentSheet, Connect)",
       "Subscription Lifecycle",
       "ThriveCart",
       "LemonSqueezy",

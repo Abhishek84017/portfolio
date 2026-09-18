@@ -29,7 +29,7 @@ export function ProjectVisual({ project, variant = "card" }: { project: Project;
             isCard ? "top-20 group-hover:-translate-y-2" : "top-1/2 -translate-y-1/2",
           )}
         >
-          <BrowserFrame url="nextgen · admin">
+          <BrowserFrame url={project.name.toLowerCase()}>
             <DashboardSketch accent={project.accent} />
           </BrowserFrame>
         </div>

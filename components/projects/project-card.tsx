@@ -1,9 +1,9 @@
 "use client";
 
-import { ArrowUpRight, Maximize2 } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
-import { GooglePlayIcon } from "@/components/ui/brand-icons";
+import { StoreLinks } from "@/components/ui/store-links";
 import type { Project } from "@/data/projects";
 import { CaseStudyDialog } from "./case-study-dialog";
 import { ProjectVisual } from "./project-visual";
@@ -90,23 +90,7 @@ export function ProjectCard({ project }: { project: Project }) {
               </span>
             </button>
           ) : null}
-          {project.playStoreUrl ? (
-            <a
-              href={project.playStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group/link inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors duration-200 ease-out-expo hover:text-fg"
-            >
-              <GooglePlayIcon size={14} />
-              Play Store
-              <ArrowUpRight
-                size={14}
-                aria-hidden
-                className="transition-transform duration-200 ease-out-expo group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-              />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-          ) : null}
+          <StoreLinks project={project} variant="icons" className="ml-auto" />
         </div>
       </div>
 

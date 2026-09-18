@@ -32,6 +32,7 @@ export type Project = {
   icon?: { src: string; alt: string };
   screenshots: Screenshot[];
   playStoreUrl?: string;
+  appStoreUrl?: string;
   caseStudy?: CaseStudy;
   /** Slug of a related write-up in data/posts.ts. */
   notes?: string;
@@ -69,6 +70,7 @@ export const projects: Project[] = [
       },
     ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.locgfx.solnce_user",
+    appStoreUrl: "https://apps.apple.com/in/app/solnce-one-stop-solar-app/id1621714349",
     notes: "flutter-load-time-30-percent",
     gallery: {
       aspect: "9 / 16",
@@ -114,8 +116,16 @@ export const projects: Project[] = [
         height: 933,
         position: "left top",
       },
+      {
+        src: "/images/projects/bestill-2.webp",
+        alt: "BeStill meditation series screen listing guided sessions with durations",
+        width: 540,
+        height: 1456,
+        position: "left top",
+      },
     ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=nl.lifeconnexion.bestill",
+    appStoreUrl: "https://apps.apple.com/in/app/bestill-bible-meditation/id1547396575",
     notes: "flutter-subscription-lifecycle",
     gallery: {
       aspect: "540 / 1168",
@@ -169,6 +179,7 @@ export const projects: Project[] = [
       },
     ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.app.DragonLTCSolutions",
+    appStoreUrl: "https://apps.apple.com/in/app/dragon-ltc-solutions/id1531698405",
     notes: "hipaa-flutter-checklist",
     gallery: {
       aspect: "9 / 20",
@@ -195,71 +206,99 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "gateway-educonnect",
-    name: "Gateway Educonnect",
-    category: "Study Abroad & Immigration",
+    slug: "yoomento",
+    name: "Yoomento",
+    category: "Mentorship & Coaching Platform",
     description:
-      "Instant Apply for university filtering and applications, Razorpay payments, and exam prep for IELTS, PTE, TOEFL, GMAT, and SAT.",
-    stack: ["Flutter", "BLoC", "REST APIs", "Razorpay", "Firebase"],
-    badge: "5 exam-prep modules",
+      "A personal-growth marketplace connecting people with verified mentors and certified coaches — discovery, booking, in-app payments and progress tracking.",
+    stack: ["Flutter", "Riverpod", "Supabase", "Stripe", "Edge Functions", "AES-256-GCM", "Sentry", "AI"],
+    badge: "iOS + Android",
     frame: "phone",
-    accent: "#d9a177",
-    screenshots: [],
-  },
-  {
-    slug: "garbh-sanskar",
-    name: "Anmol Garbh Sanskar",
-    category: "Pregnancy Education App",
-    description:
-      "Maternal wellness app with daily routine-based content and local notification reminders, optimized for low-to-mid-range Android devices.",
-    stack: ["Flutter", "Provider", "REST APIs", "Firebase", "Local Notifications"],
-    badge: "Tuned for low-end Android",
-    frame: "phone",
-    accent: "#a7bf8a",
-    icon: { src: "/images/projects/garbh-sanskar-icon.webp", alt: "Anmol Garbh Sanskar app icon" },
+    accent: "#8e93dc",
+    icon: { src: "/images/projects/yoomento-icon.webp", alt: "Yoomento app icon" },
     screenshots: [
       {
-        src: "/images/projects/garbh-sanskar-1.webp",
-        alt: "Anmol Garbh Sanskar daily diet plan screen organised by meal",
-        width: 600,
-        height: 1067,
+        src: "/images/gallery/yoomento-0.webp",
+        alt: "Yoomento home screen with a mood check-in, daily affirmation and goals",
+        width: 370,
+        height: 800,
       },
       {
-        src: "/images/projects/garbh-sanskar-2.webp",
-        alt: "Anmol Garbh Sanskar sign-in screen",
-        width: 600,
-        height: 1067,
+        src: "/images/gallery/yoomento-1.webp",
+        alt: "Yoomento find professionals screen listing verified mentors",
+        width: 370,
+        height: 800,
       },
     ],
-    playStoreUrl:
-      "https://play.google.com/store/apps/details?id=com.greenhightech.anmol_garbh_sanskar",
-  },
-  {
-    slug: "nextgen",
-    name: "NextGen",
-    category: "Multi-Platform Admin Panel",
-    description:
-      "Fully responsive admin dashboard with adaptive layouts across mobile, tablet, desktop and web from one Flutter codebase and design system.",
-    stack: ["Flutter", "BLoC", "Responsive Layout", "Mobile", "Tablet", "Desktop", "Web"],
-    badge: "4 platforms · 1 codebase",
-    frame: "browser",
-    accent: "#b8a48a",
-    screenshots: [],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.yoomento.mobile",
+    appStoreUrl: "https://apps.apple.com/in/app/yoomento/id6770527258",
+    caseStudy: {
+      problem:
+        "People trying to build focus and healthier habits needed a trusted way to find verified mentors and coaches, book sessions and pay — while professionals needed onboarding, availability, consent and payout workflows of their own.",
+      approach: [
+        "Built the Flutter app with Riverpod on a Supabase backend — auth, Postgres and Edge Functions for reminders, emails, feedback reports and Stripe webhooks.",
+        "Integrated Stripe PaymentSheet for in-app session payments and Stripe Connect onboarding for professional payouts.",
+        "Encrypted sensitive client data with AES-256-GCM, keys held in secure storage, plus digitally signed consent forms with renewal reminders.",
+        "Timezone-aware booking and availability calendars, AI-generated progress summaries via a chat-completion service, and Sentry for crash and performance monitoring.",
+      ],
+      result: [
+        { metric: "iOS + Android", label: "Live on both stores" },
+        { metric: "11", label: "Supabase Edge Functions" },
+      ],
+    },
+    gallery: {
+      aspect: "370 / 800",
+      slides: [
+        { src: "/images/gallery/yoomento-0.webp", alt: "Yoomento home screen with a mood check-in, daily affirmation and goals", caption: "Daily check-ins, affirmations and goals" },
+        { src: "/images/gallery/yoomento-1.webp", alt: "Yoomento find professionals screen listing verified mentors with specialties and ratings", caption: "Find verified mentors and coaches" },
+        { src: "/images/gallery/yoomento-2.webp", alt: "Yoomento specialized program overview for research academies", caption: "Specialised mentorship programs" },
+        { src: "/images/gallery/yoomento-3.webp", alt: "Yoomento book session screen with per-session pricing and inclusions", caption: "Book and pay for sessions in-app" },
+        { src: "/images/gallery/yoomento-4.webp", alt: "Yoomento services screen for mentorship, coaching and screen detox", caption: "Mentorship, coaching and screen detox" },
+        { src: "/images/gallery/yoomento-5.webp", alt: "Yoomento sign-in screen letting users join as a client or as a professional", caption: "Join as a client — or as a professional" },
+      ],
+    },
   },
   {
     slug: "raghuvir-developer",
     name: "Raghuvir Developer",
     category: "Real-Estate Operations App",
     description:
-      "Internal business app for a real-estate developer — real-time flat inventory, team targets and performance tracking, and activity management.",
-    stack: ["Flutter"],
-    badge: "Internal business app",
+      "A real-estate developer's operations system on mobile — flat inventory, construction process automation, targets, defects and bill approvals for site and office teams.",
+    stack: ["Flutter", "BLoC", "freezed", "Hive", "Firebase", "FCM", "Remote Config", "Crashlytics"],
+    badge: "iOS + Android",
     frame: "phone",
     accent: "#8f9ec9",
-    inGrid: false,
     icon: { src: "/images/projects/raghuvir-icon.webp", alt: "Raghuvir Developer app icon" },
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/images/gallery/raghuvir-0.webp",
+        alt: "Raghuvir Developer home screen listing projects with building and unit counts",
+        width: 540,
+        height: 1200,
+      },
+      {
+        src: "/images/gallery/raghuvir-2.webp",
+        alt: "Raghuvir Developer automation data screen showing processed units wing by wing",
+        width: 540,
+        height: 1200,
+      },
+    ],
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.app.raghuvirdevelopers",
+    appStoreUrl: "https://apps.apple.com/in/app/raghuvir-developers/id6747113189",
+    caseStudy: {
+      problem:
+        "A real-estate developer ran its projects on a web operations system, but site and office teams needed the same flat inventory, process tracking, targets, defects and bill approvals on their phones.",
+      approach: [
+        "Rebuilt each web module as a mobile feature with flutter_bloc and freezed — dashboard, automation, targeted activities, defects, bill progress, tutorials and more.",
+        "Cascading filter forms and activity × flat progress matrices, with single and bulk bill approval from the grid.",
+        "Hive caching and connectivity checks for patchy on-site networks.",
+        "Confidential training PDFs and videos with watermarking and screen-capture blocking; FCM notifications, Remote Config maintenance mode and Crashlytics.",
+      ],
+      result: [
+        { metric: "16", label: "BLoC feature modules" },
+        { metric: "iOS + Android", label: "Live on both stores" },
+      ],
+    },
     gallery: {
       aspect: "9 / 20",
       slides: [
@@ -270,12 +309,56 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    slug: "skmei",
+    name: "SKMEI Watch — Employee",
+    category: "Employee HRMS App",
+    description:
+      "An HR app for SKMEI's workforce — location-verified clock in and out, attendance history, leave requests, employee directory and company announcements.",
+    stack: ["Flutter", "BLoC", "freezed", "Geolocator", "Hive", "OTP Auth", "Screen Security", "Crashlytics"],
+    badge: "iOS + Android",
+    frame: "phone",
+    accent: "#7ea6e0",
+    icon: { src: "/images/projects/skmei-icon.webp", alt: "SKMEI Watch Employee app icon" },
+    screenshots: [
+      {
+        src: "/images/gallery/skmei-0.webp",
+        alt: "SKMEI home screen with attendance check-in, quick leave and work anniversaries; employee names blurred",
+        width: 540,
+        height: 1200,
+      },
+      {
+        src: "/images/gallery/skmei-3.webp",
+        alt: "SKMEI leave applications filter by status, type, employee, branch and dates",
+        width: 540,
+        height: 1200,
+      },
+    ],
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.skmei.app",
+    appStoreUrl: "https://apps.apple.com/in/app/skmei-watch-employee/id6754878989",
+    caseStudy: {
+      problem:
+        "SKMEI's employees needed one place for the everyday HR basics — clocking in and out, tracking work hours, applying for leave and staying connected with the organisation.",
+      approach: [
+        "Structured the app as flutter_bloc + freezed feature modules: attendance, check-in/out, leave applications, employee directory, announcements, HR handbook, visitor passes and stock-out.",
+        "Location-verified clock in and out with Geolocator, with a server-controlled geofencing bypass for approved exceptions.",
+        "OTP verification at sign-in and screen-capture protection on both iOS and Android.",
+        "Hive caching and connectivity checks, an in-app PDF HR handbook, and Crashlytics for production stability.",
+      ],
+      result: [
+        { metric: "9", label: "BLoC feature modules" },
+        { metric: "iOS + Android", label: "Live on both stores" },
+      ],
+    },
+    gallery: {
+      aspect: "9 / 20",
+      slides: [
+        { src: "/images/gallery/skmei-0.webp", alt: "SKMEI home screen with attendance check-in, quick leave and work anniversaries; employee names blurred", caption: "Clock in and see today at a glance" },
+        { src: "/images/gallery/skmei-1.webp", alt: "SKMEI employee profile with call and email actions and personal information", caption: "Employee profiles, one tap to call or email" },
+        { src: "/images/gallery/skmei-2.webp", alt: "SKMEI create attendance request form with date, time range and explanation", caption: "Attendance correction requests" },
+        { src: "/images/gallery/skmei-3.webp", alt: "SKMEI leave applications filter by status, type, employee, branch and dates", caption: "Filterable leave applications" },
+        { src: "/images/gallery/skmei-4.webp", alt: "SKMEI sign-in screen for the employee workspace", caption: "Secure workspace sign-in" },
+      ],
+    },
+  },
 ];
-
-export const openSource = {
-  profileUrl: "https://github.com/Abhishek84017",
-  repos: [
-    { name: "flutter-admin-dashboard", language: "Dart" },
-    { name: "Flutter_bloc", language: "Dart" },
-  ],
-} as const;

@@ -86,8 +86,8 @@ export function PortraitPhoto() {
           <motion.div
             className="absolute inset-0"
             variants={{
-              hidden: { scale: 1.35 },
-              show: { scale: 1.15, transition: { duration: 1.6, ease: EASE_OUT_EXPO } },
+              hidden: { scale: 1.12 },
+              show: { scale: 1, transition: { duration: 1.6, ease: EASE_OUT_EXPO } },
             }}
           >
             <Image
@@ -97,7 +97,7 @@ export function PortraitPhoto() {
               fill
               onError={onError}
               sizes="(min-width: 1024px) 400px, (min-width: 640px) 384px, 100vw"
-              className="object-cover object-[50%_18%] transition-transform duration-700 ease-out-expo group-hover:scale-105"
+              className="object-cover object-[50%_12%] transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]"
             />
             <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>

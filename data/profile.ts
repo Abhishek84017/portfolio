@@ -24,7 +24,7 @@ export const profile = {
     "At Sarvadhi Solutions I've independently led the architecture, development, and store deployment of 6+ production apps — two of them past 10,000 downloads — usually as the sole Flutter engineer on the project.",
     "My range goes beyond the UI layer: HIPAA-aware healthcare development, full-stack work across Flutter, Django and Firebase, and CI/CD pipelines with GitHub Actions and Codemagic. I've also mentored 3 junior developers along the way.",
   ],
-  domains: ["Solar energy", "Healthcare", "Wellness", "Education"],
+  domains: ["Solar energy", "Healthcare", "Wellness", "Education", "Real estate", "Coaching", "HR & workforce"],
 
   stats: [
     { value: 4, suffix: "+", label: "Years" },

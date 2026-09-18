@@ -8,13 +8,13 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import { Reveal } from "@/components/motion/reveal";
-import { GooglePlayIcon } from "@/components/ui/brand-icons";
 import { Container, Section } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { StoreLinks } from "@/components/ui/store-links";
 import { type GallerySlide, projects } from "@/data/projects";
 import { useMediaQuery } from "@/lib/hooks";
 import { cn, EASE_OUT_EXPO } from "@/lib/utils";
@@ -95,7 +95,7 @@ export function AppPreviews() {
               Take a closer look at <span className="text-shimmer font-medium italic">what shipped</span>.
             </>
           }
-          lede="Real Play Store screens from apps I built end to end. The tour plays on its own — hover to pause, or swipe, drag and use the arrow keys."
+          lede="Real store screens from apps I built end to end. The tour plays on its own — hover to pause, or swipe, drag and use the arrow keys."
         />
 
         <Reveal delay={0.1} className="mt-12 flex justify-center">
@@ -322,23 +322,7 @@ export function AppPreviews() {
               <span className="font-mono text-xs text-muted tabular-nums">
                 {String(slide + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
               </span>
-              {app.playStoreUrl ? (
-                <a
-                  href={app.playStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link inline-flex items-center gap-2 font-medium text-muted transition-colors duration-200 ease-out-expo hover:text-fg"
-                >
-                  <GooglePlayIcon size={14} />
-                  Get {app.name} on Google Play
-                  <ArrowUpRight
-                    size={14}
-                    aria-hidden
-                    className="transition-transform duration-200 ease-out-expo group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-                  />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              ) : null}
+              <StoreLinks project={app} variant="inline" />
             </div>
           </div>
         </div>
