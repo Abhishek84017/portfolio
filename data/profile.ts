@@ -37,11 +37,17 @@ export const profile = {
     email: "patelabhishek102001@gmail.com",
     phone: "+91 7600175674",
     phoneHref: "tel:+917600175674",
+    whatsapp: {
+      display: "+91 76001 75674",
+      // Opens a WhatsApp chat (app or web) with a friendly message pre-filled.
+      href: `https://wa.me/917600175674?text=${encodeURIComponent(
+        "Hi Abhishek, I came across your portfolio and would like to connect.",
+      )}`,
+    },
   },
   socials: {
     github: "https://github.com/Abhishek84017",
-    // Set once confirmed — the resume PDF currently links to the LinkedIn homepage.
-    linkedin: null as string | null,
+    linkedin: "https://www.linkedin.com/in/abhishek-patel-flutter" as string | null,
   },
 
   resume: {

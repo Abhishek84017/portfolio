@@ -2,7 +2,7 @@ import { ArrowUpRight, Mail, Phone, type LucideIcon } from "lucide-react";
 import { ContactForm } from "@/components/contact/contact-form";
 import { CopyEmail } from "@/components/contact/copy-email";
 import { Reveal } from "@/components/motion/reveal";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
+import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/brand-icons";
 import { Container, Section } from "@/components/ui/container";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
@@ -17,6 +17,13 @@ type Method = {
 
 const methods: Method[] = [
   { label: "Email", value: profile.contact.email, href: `mailto:${profile.contact.email}`, icon: Mail },
+  {
+    label: "WhatsApp",
+    value: "Message me on WhatsApp",
+    href: profile.contact.whatsapp.href,
+    icon: WhatsappIcon,
+    external: true,
+  },
   { label: "Phone", value: profile.contact.phone, href: profile.contact.phoneHref, icon: Phone },
   ...(profile.socials.linkedin
     ? [{ label: "LinkedIn", value: "Connect on LinkedIn", href: profile.socials.linkedin, icon: LinkedinIcon, external: true }]

@@ -18,13 +18,22 @@ pnpm build && pnpm lint
 | `components/motion/` | `Reveal`, `Stagger`, `CountUp` — the shared expo-out motion primitives. |
 | `app/actions/contact.ts` | Contact form Server Action → Supabase insert. |
 | `supabase/migrations/` | `contact_messages` table + RLS (insert-only for the anon role). |
-| `public/resume.pdf` | Resume served by the Nav and Hero download buttons. |
+| `public/resume.pdf` | Resume served by the Nav and Hero download buttons. Generated from `resume/resume.html`. |
 | `public/images/profile.png` | Profile photo (About section + hero avatar). |
 | `public/images/projects/` | App icons and screenshots pulled from the Play Store listings. |
 
 To add testimonials, fill `testimonials` in `data/testimonials.ts` — the section switches from the mentorship strip automatically.
 
-## Contact form — Supabase setup (CLI)
+## Contact form — email via Resend
+
+Messages are emailed to you through [Resend](https://resend.com). Set `RESEND_API_KEY` and `CONTACT_TO_EMAIL`
+in `.env.local` (local) and in Vercel → Project → Settings → Environment Variables (production), then redeploy.
+Replying to the email answers the visitor directly (their address is set as Reply-To).
+
+Until a custom domain is verified in Resend, mail is sent from `onboarding@resend.dev` and can only be delivered
+to the email your Resend account is registered with. After adding a domain, set `CONTACT_FROM_EMAIL`.
+
+## Contact form archive — Supabase setup (optional, CLI)
 
 ```bash
 brew install supabase/tap/supabase
@@ -44,3 +53,8 @@ Read submissions in the Supabase dashboard (Table Editor → `contact_messages`)
 
 Import the repo in Vercel — no config needed. `metadataBase` falls back to the Vercel production URL, so Open Graph
 tags work on `*.vercel.app` out of the box. When a custom domain is added, set `NEXT_PUBLIC_SITE_URL` to it.
+
+## Updating the resume
+
+Edit `resume/resume.html`, open it in Chrome, **Print → Save as PDF** (paper size Letter, margins "Default" — the page
+margins are set in the file), and save over `public/resume.pdf`. Keep it to two pages.
