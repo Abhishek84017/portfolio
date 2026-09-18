@@ -12,7 +12,7 @@ export const profile = {
   location: "Surat, Gujarat, India",
 
   headline: {
-    lead: "I build cross\u2011platform apps that ship to",
+    lead: "I build cross-platform apps that ship to",
     highlight: "20,000+ users",
   },
   positioning:

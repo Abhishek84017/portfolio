@@ -43,7 +43,7 @@ export function Hero() {
             <span aria-hidden>
               {profile.headline.lead.split(" ").map((word, i) => (
                 <span key={`${word}-${i}`}>
-                  <span className="animate-word" style={{ animationDelay: `${80 + i * 55}ms` }}>
+                  <span className="animate-word whitespace-nowrap" style={{ animationDelay: `${80 + i * 55}ms` }}>
                     {word}
                   </span>{" "}
                 </span>
