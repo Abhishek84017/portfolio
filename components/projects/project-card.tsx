@@ -2,9 +2,10 @@
 
 import { Maximize2 } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { StoreLinks } from "@/components/ui/store-links";
 import type { Project } from "@/data/projects";
+import { OPEN_CASE_STUDY } from "@/lib/case-study-events";
 import { CaseStudyDialog } from "./case-study-dialog";
 import { ProjectVisual } from "./project-visual";
 
@@ -13,6 +14,17 @@ const MAX_CHIPS = 4;
 export function ProjectCard({ project }: { project: Project }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const openCaseStudy = () => dialogRef.current?.showModal();
+
+  // Open this card's case study when requested from elsewhere (e.g. the hero showcase).
+  useEffect(() => {
+    if (!project.caseStudy) return;
+    const onOpen = (e: Event) => {
+      const dialog = dialogRef.current;
+      if ((e as CustomEvent<string>).detail === project.slug && dialog && !dialog.open) dialog.showModal();
+    };
+    window.addEventListener(OPEN_CASE_STUDY, onOpen);
+    return () => window.removeEventListener(OPEN_CASE_STUDY, onOpen);
+  }, [project.slug, project.caseStudy]);
   const hidden = project.stack.length - MAX_CHIPS;
 
   return (

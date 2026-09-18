@@ -1,5 +1,6 @@
-import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUp, ArrowUpRight, ChevronDown, Mail } from "lucide-react";
 import Link from "next/link";
+import { EmailChooser } from "@/components/contact/email-chooser";
 import { Reveal } from "@/components/motion/reveal";
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from "@/components/ui/brand-icons";
 import { Container } from "@/components/ui/container";
@@ -13,6 +14,7 @@ type Channel = {
   icon: React.ComponentType<{ size?: number; className?: string }>;
   external: boolean;
   primary?: boolean;
+  chooser?: boolean;
 };
 
 const channels: Channel[] = [
@@ -30,6 +32,7 @@ const channels: Channel[] = [
     href: `mailto:${profile.contact.email}`,
     icon: Mail,
     external: false,
+    chooser: true,
   },
   ...(profile.socials.linkedin
     ? [
@@ -80,16 +83,13 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
             </div>
 
             <ul className="flex min-w-0 flex-col gap-3 lg:col-span-7">
-              {channels.map((c) => (
-                <li key={c.label}>
-                  <a
-                    href={c.href}
-                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className={cn(
-                      "group/ch flex items-center gap-4 rounded-2xl p-4 transition-[transform,box-shadow,background-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:shadow-card-hover",
-                      c.primary ? "bg-accent text-[var(--on-accent)]" : "glass-strong text-fg",
-                    )}
-                  >
+              {channels.map((c) => {
+                const classes = cn(
+                  "group/ch flex w-full items-center gap-4 rounded-2xl p-4 text-left transition-[transform,box-shadow,background-color] duration-300 ease-out-expo hover:-translate-y-0.5 hover:shadow-card-hover",
+                  c.primary ? "bg-accent text-[var(--on-accent)]" : "glass-strong text-fg",
+                );
+                const body = (trailing: React.ReactNode) => (
+                  <>
                     <span
                       className={cn(
                         "grid size-11 shrink-0 place-items-center rounded-xl transition-transform duration-300 ease-out-expo group-hover/ch:-rotate-6 group-hover/ch:scale-110",
@@ -104,15 +104,40 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
                         {c.detail}
                       </span>
                     </span>
-                    <ArrowUpRight
-                      size={20}
-                      aria-hidden
-                      className="shrink-0 transition-transform duration-300 ease-out-expo group-hover/ch:translate-x-1 group-hover/ch:-translate-y-1"
-                    />
-                    {c.external ? <span className="sr-only">(opens in a new tab)</span> : null}
-                  </a>
-                </li>
-              ))}
+                    {trailing}
+                  </>
+                );
+                return (
+                  <li key={c.label}>
+                    {c.chooser ? (
+                      <EmailChooser triggerClassName={classes}>
+                        {body(
+                          <ChevronDown
+                            size={20}
+                            aria-hidden
+                            className="shrink-0 transition-transform duration-300 ease-out-expo group-aria-expanded/email:rotate-180"
+                          />,
+                        )}
+                      </EmailChooser>
+                    ) : (
+                      <a
+                        href={c.href}
+                        {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className={classes}
+                      >
+                        {body(
+                          <ArrowUpRight
+                            size={20}
+                            aria-hidden
+                            className="shrink-0 transition-transform duration-300 ease-out-expo group-hover/ch:translate-x-1 group-hover/ch:-translate-y-1"
+                          />,
+                        )}
+                        {c.external ? <span className="sr-only">(opens in a new tab)</span> : null}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Reveal>

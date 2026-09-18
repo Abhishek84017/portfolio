@@ -1,14 +1,9 @@
 import { ArrowDown, Download } from "lucide-react";
-import Image from "next/image";
 import { Magnetic } from "@/components/motion/magnetic";
 import { buttonClasses } from "@/components/ui/button";
-import { PhoneFrame } from "@/components/ui/device-frames";
 import { Avatar } from "@/components/ui/profile-photo";
+import { HeroShowcase } from "./hero-showcase";
 import { profile } from "@/data/profile";
-import { projects } from "@/data/projects";
-
-const solnce = projects.find((p) => p.slug === "solnce")!;
-const bestill = projects.find((p) => p.slug === "bestill")!;
 
 /** Stagger step for the load choreography: eyebrow → headline → subtext → CTA. */
 const step = (i: number) => ({ animationDelay: `${i * 100}ms` });
@@ -104,47 +99,9 @@ export function Hero() {
           </div>
         </div>
 
-        <HeroDevices />
+        <HeroShowcase />
       </div>
     </section>
-  );
-}
-
-function HeroDevices() {
-  return (
-    <div className="relative mx-auto w-full max-w-sm lg:col-span-5 lg:max-w-none" aria-hidden>
-      <div className="relative mx-auto flex h-96 w-full max-w-sm items-center justify-center sm:h-[32rem]">
-        <div
-          className="animate-float-in absolute top-12 left-0 w-40 -rotate-6 opacity-80 sm:w-48"
-          style={{ animationDelay: "350ms" }}
-        >
-          <div className="animate-bob" style={{ animationDelay: "-3s" }}>
-            <PhoneFrame screenshot={bestill.screenshots[0]} sizes="200px" />
-          </div>
-        </div>
-        <div
-          className="animate-float-in relative z-10 ml-16 w-48 rotate-3 sm:w-60"
-          style={{ animationDelay: "200ms" }}
-        >
-          <div className="animate-bob">
-            <PhoneFrame screenshot={solnce.screenshots[0]} sizes="(min-width: 640px) 240px, 192px" priority />
-          </div>
-        </div>
-
-        <div
-          className="animate-rise glass-strong absolute right-0 bottom-8 z-20 flex items-center gap-3 rounded-2xl p-3 pr-4 shadow-card-hover sm:bottom-12"
-          style={{ animationDelay: "700ms" }}
-        >
-          {solnce.icon ? (
-            <Image src={solnce.icon.src} alt="" width={40} height={40} className="size-10 rounded-xl" />
-          ) : null}
-          <div className="leading-tight">
-            <p className="font-display text-lg font-semibold text-fg">10,000+</p>
-            <p className="text-xs text-muted">installs · Solnce</p>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 

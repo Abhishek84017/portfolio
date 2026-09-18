@@ -38,8 +38,11 @@ export type Project = {
   notes?: string;
   /** false keeps the app out of the Featured Projects grid (previews only). */
   inGrid?: boolean;
-  /** Full Play Store gallery, shown in the App Previews section. */
-  gallery?: { aspect: string; slides: GallerySlide[] };
+  /**
+   * Full store gallery, shown in the App Previews section.
+   * `ui: true` marks raw app screens (no marketing art), which the hero phone can play through.
+   */
+  gallery?: { aspect: string; slides: GallerySlide[]; ui?: boolean };
 };
 
 export const projects: Project[] = [
@@ -183,6 +186,7 @@ export const projects: Project[] = [
     notes: "hipaa-flutter-checklist",
     gallery: {
       aspect: "9 / 20",
+      ui: true,
       slides: [
         { src: "/images/gallery/dragon-ltc-0.webp", alt: "Dragon LTC Solutions sign-in screen", caption: "Secure sign-in for care-facility staff" },
         { src: "/images/gallery/dragon-ltc-1.webp", alt: "Dragon LTC Solutions dashboard menu with resident, insurance, high-cost and RTS alerts", caption: "Resident, insurance and high-cost alerts" },
@@ -248,6 +252,7 @@ export const projects: Project[] = [
     },
     gallery: {
       aspect: "370 / 800",
+      ui: true,
       slides: [
         { src: "/images/gallery/yoomento-0.webp", alt: "Yoomento home screen with a mood check-in, daily affirmation and goals", caption: "Daily check-ins, affirmations and goals" },
         { src: "/images/gallery/yoomento-1.webp", alt: "Yoomento find professionals screen listing verified mentors with specialties and ratings", caption: "Find verified mentors and coaches" },
@@ -301,6 +306,7 @@ export const projects: Project[] = [
     },
     gallery: {
       aspect: "9 / 20",
+      ui: true,
       slides: [
         { src: "/images/gallery/raghuvir-0.webp", alt: "Raghuvir Developer home screen listing projects with building and unit counts", caption: "Every project, building and unit at a glance" },
         { src: "/images/gallery/raghuvir-1.webp", alt: "Raghuvir Developer navigation menu with projects, automation, targets and reports", caption: "Projects, automation, targets and reports" },
@@ -352,6 +358,7 @@ export const projects: Project[] = [
     },
     gallery: {
       aspect: "9 / 20",
+      ui: true,
       slides: [
         { src: "/images/gallery/skmei-0.webp", alt: "SKMEI home screen with attendance check-in, quick leave and work anniversaries; employee names blurred", caption: "Clock in and see today at a glance" },
         { src: "/images/gallery/skmei-1.webp", alt: "SKMEI employee profile with call and email actions and personal information", caption: "Employee profiles, one tap to call or email" },
